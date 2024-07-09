@@ -2,6 +2,7 @@ import User from "@/lib/models/User";
 import { connectToDB } from "@/lib/mongoDB";
 
 import { auth } from "@clerk/nextjs/server";
+import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async (req: NextRequest) => {
@@ -29,16 +30,18 @@ export const POST = async (req: NextRequest) => {
         const isLiked = user.wishlist.includes(productId)
 
         if (isLiked) {
-            //Dislike
+            // Dislike
             user.wishlist = user.wishlist.filter((id: string) => id !== productId)
         } else {
-            //Like
+            // Like
             user.wishlist.push(productId)
         }
 
         await user.save()
+
         return NextResponse.json(user, { status: 200 })
     } catch (err) {
-        return new NextResponse("Internal Server Error", { status: 500 })
+        console.log("[wishlist_POST]", err);
+        return new NextResponse("Internal Server Error", { status: 500 });
     }
 }
