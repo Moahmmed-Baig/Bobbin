@@ -14,10 +14,6 @@ const corsHeaders = {
     "Access-Control-Allow-Headers": "Content-Type, Authorization",
 };
 
-export async function OPTIONS() {
-    return NextResponse.json({}, { headers: corsHeaders });
-}
-
 const Cart = () => {
     const router = useRouter();
     const { user } = useUser();
@@ -53,7 +49,7 @@ const Cart = () => {
         }
     };
 
-    return (
+    return (NextResponse.json({}, { headers: corsHeaders }),
         <div className="flex gap-20 py-16 px-10 max-lg:flex-col max-sm:px-3">
             <div className="w-2/3 max-lg:w-full">
                 <p className="text-heading3-bold">Shopping Cart</p>
