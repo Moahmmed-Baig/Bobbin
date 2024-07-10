@@ -31,7 +31,7 @@ const Cart = () => {
             if (!user) {
                 router.push("sign-in");
             } else {
-                const res = await fetch(`/checkout`, {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
                     method: "POST",
                     body: JSON.stringify({ cartItems: cart.cartItems, customer }),
                 });
