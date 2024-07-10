@@ -7,8 +7,6 @@ import { MinusCircle, PlusCircle, Trash } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-
-
 const Cart = () => {
     const router = useRouter();
     const { user } = useUser();
@@ -31,7 +29,7 @@ const Cart = () => {
             if (!user) {
                 router.push("sign-in");
             } else {
-                const res = await fetch("/api/checkout", {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
                     method: "POST",
                     body: JSON.stringify({ cartItems: cart.cartItems, customer }),
                 });
@@ -75,6 +73,19 @@ const Cart = () => {
                                         <p className="text-small-medium">${cartItem.item.price}</p>
                                     </div>
                                 </div>
+
+                                <div className="flex gap-4 items-center">
+                                    <MinusCircle
+                                        className="hover:text-red-1 cursor-pointer"
+                                        onClick={() => cart.decreaseQuantity(cartItem.item._id)}
+                                    />
+                                    <p className="text-body-bold">{cartItem.quantity}</p>
+                                    <PlusCircle
+                                        className="hover:text-red-1 cursor-pointer"
+                                        onClick={() => cart.increaseQuantity(cartItem.item._id)}
+                                    />
+                                </div>
+
                                 <Trash
                                     className="hover:text-red-1 cursor-pointer"
                                     onClick={() => cart.removeItem(cartItem.item._id)}
