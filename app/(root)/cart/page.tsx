@@ -3,7 +3,7 @@
 import useCart from "@/lib/hooks/useCart";
 
 import { useUser } from "@clerk/nextjs";
-import { Trash } from "lucide-react";
+import { MinusCircle, PlusCircle, Trash } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -65,15 +65,12 @@ const Cart = () => {
                                     <div className="flex flex-col gap-3 ml-4">
                                         <p className="text-body-bold">{cartItem.item.title}</p>
                                         {cartItem.color && (
-                                            <p className="text-small-medium">Colour: {cartItem.color}</p>
+                                            <p className="text-small-medium">{cartItem.color}</p>
                                         )}
                                         {cartItem.size && (
-                                            <p className="text-small-medium">Size: {cartItem.size}</p>
+                                            <p className="text-small-medium">{cartItem.size}</p>
                                         )}
-                                        <p className="text-small-medium">Price: ${cartItem.item.price}</p>
-                                        {cartItem.quantity && (
-                                            <p className="text-small-medium">Quantity: {cartItem.quantity}</p>
-                                        )}
+                                        <p className="text-small-medium">${cartItem.item.price}</p>
                                     </div>
                                 </div>
                                 <Trash
@@ -108,5 +105,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
-export const dynamic = "force-dynamic";
