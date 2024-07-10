@@ -6,13 +6,8 @@ import { useUser } from "@clerk/nextjs";
 import { MinusCircle, PlusCircle, Trash } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { NextResponse } from "next/server";
 
-const corsHeaders = {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization",
-};
+
 
 const Cart = () => {
     const router = useRouter();
@@ -49,7 +44,7 @@ const Cart = () => {
         }
     };
 
-    return (NextResponse.json({}, { headers: corsHeaders }),
+    return (
         <div className="flex gap-20 py-16 px-10 max-lg:flex-col max-sm:px-3">
             <div className="w-2/3 max-lg:w-full">
                 <p className="text-heading3-bold">Shopping Cart</p>
