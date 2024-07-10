@@ -3,7 +3,7 @@
 import useCart from "@/lib/hooks/useCart";
 
 import { useUser } from "@clerk/nextjs";
-import { MinusCircle, PlusCircle, Trash } from "lucide-react";
+import { Trash } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -35,7 +35,6 @@ const Cart = () => {
                 });
                 const data = await res.json();
                 window.location.href = data.url;
-                console.log(data);
             }
         } catch (err) {
             console.log("[checkout_POST]", err);
@@ -73,19 +72,6 @@ const Cart = () => {
                                         <p className="text-small-medium">${cartItem.item.price}</p>
                                     </div>
                                 </div>
-
-                                <div className="flex gap-4 items-center">
-                                    <MinusCircle
-                                        className="hover:text-red-1 cursor-pointer"
-                                        onClick={() => cart.decreaseQuantity(cartItem.item._id)}
-                                    />
-                                    <p className="text-body-bold">{cartItem.quantity}</p>
-                                    <PlusCircle
-                                        className="hover:text-red-1 cursor-pointer"
-                                        onClick={() => cart.increaseQuantity(cartItem.item._id)}
-                                    />
-                                </div>
-
                                 <Trash
                                     className="hover:text-red-1 cursor-pointer"
                                     onClick={() => cart.removeItem(cartItem.item._id)}
