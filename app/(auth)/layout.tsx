@@ -9,8 +9,8 @@ import {
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Maven - Store Auth",
-  description: "Admin Dashboard to Manage Maven's Data",
+  title: "Bobbin",
+  description: "E-Commerce Store",
 };
 
 export default function RootLayout({
