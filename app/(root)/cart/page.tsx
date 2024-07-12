@@ -62,14 +62,17 @@ const Cart = () => {
                                         alt="product"
                                     />
                                     <div className="flex flex-col gap-3 ml-4">
-                                        <p className="text-body-bold">{cartItem.item.title}</p>
+                                        <p className="text-body-bold">Name: {cartItem.item.title}</p>
                                         {cartItem.color && (
-                                            <p className="text-small-medium">{cartItem.color}</p>
+                                            <p className="text-small-medium">Color: {cartItem.color}</p>
                                         )}
                                         {cartItem.size && (
-                                            <p className="text-small-medium">{cartItem.size}</p>
+                                            <p className="text-small-medium">Size: {cartItem.size}</p>
                                         )}
                                         <p className="text-small-medium">${cartItem.item.price}</p>
+                                        {cartItem.quantity && (
+                                            <p className="text-small-medium">Quantity: {cartItem.quantity}</p>
+                                        )}
                                     </div>
                                 </div>
                                 <Trash
